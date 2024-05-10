@@ -8,7 +8,7 @@ WORKDIR /app
 COPY build/libs/demo-0.0.1-SNAPSHOT.jar demo.jar
 
 # Explicar a porta em que a aplicação será executada
-EXPOSE 8080
+EXPOSE 8090
 
 # Comando para executar a aplicação
 CMD ["java", "-jar", "demo.jar"]
