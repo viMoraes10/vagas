@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.JobDTO;
+import com.example.demo.model.job.Job;
 import com.example.demo.service.JobService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.quartz.JobStoreType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "job")
@@ -16,12 +20,23 @@ public class JobController {
 
     @GetMapping(value = "/all")
     public ResponseEntity getAllJobs (){
-
-        jobService.getAllJobs();
-
-
-        return ResponseEntity.ok().build();
+        try{
+            return ResponseEntity.ok(jobService.getAllJobs());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Request failed: " + e.getMessage());
+        }
     }
 
+    @PostMapping(value = "/add")
+    public ResponseEntity postJob(@RequestBody @Valid JobDTO JobDTO){
+        try{
 
+
+
+
+            return ResponseEntity.ok(jobService.getAllJobs());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Request failed: " + e.getMessage());
+        }
+    }
 }

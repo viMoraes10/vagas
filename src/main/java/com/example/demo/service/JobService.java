@@ -14,10 +14,7 @@ public class JobService {
     JobRepository jobRepository;
 
     public List<Job> getAllJobs() {
-
-        List<Job> jobs = jobRepository.findAll();
-
-        return jobs;
+        return jobRepository.findAll();
     }
 
 
