@@ -4,7 +4,7 @@ import com.example.demo.infra.security.TokenService;
 import com.example.demo.dto.AuthenticationDTO;
 import com.example.demo.dto.LoginResponseDTO;
 import com.example.demo.dto.RegisterDTO;
-import com.example.demo.model.user.User;
+import com.example.demo.model.User.User;
 import com.example.demo.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

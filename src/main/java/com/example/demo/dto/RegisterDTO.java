@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.user.UserRole;
+import com.example.demo.model.User.UserRole;
 
 public record RegisterDTO(String username, String password, UserRole role, String email)  {
 }
