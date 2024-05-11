@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Job.Job;
+import com.example.demo.model.job.Job;
 import com.example.demo.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,4 +19,6 @@ public class JobService {
 
         return jobs;
     }
+
+
 }

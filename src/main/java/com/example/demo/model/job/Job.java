@@ -1,9 +1,8 @@
-package com.example.demo.model.Job;
+package com.example.demo.model.job;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.Getter;
 
 @Entity
