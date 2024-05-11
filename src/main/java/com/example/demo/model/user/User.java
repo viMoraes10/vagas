@@ -33,21 +33,19 @@ public class User implements UserDetails {
     private String email;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     public User() {
     }
 
-    public User(String username, String password, String email, UserRole role) {
+    public User(String username, String password, UserRole role, String email) {
         this.username = username;
-        setPassword(password);
+        this.password = password;
         this.email = email;
         this.role = role;
     }
 
-    public void setPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -57,7 +55,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 
     @Override
