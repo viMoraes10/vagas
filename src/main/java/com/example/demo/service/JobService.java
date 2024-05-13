@@ -19,6 +19,10 @@ public class JobService {
         return jobRepository.findAll();
     }
 
+    public Optional<Jobs> getJob(Long id ) {
+        return jobRepository.findById(id);
+    }
+
 
     public Jobs created(JobDTO jobDTO) {
         Jobs job = new Jobs(jobDTO.title(), jobDTO.description(), jobDTO.requirements(), true);

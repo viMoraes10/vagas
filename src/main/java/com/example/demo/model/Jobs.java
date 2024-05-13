@@ -6,12 +6,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+
 @Data
+@Entity
 @Table(name = "jobs")
-@Getter
-@Setter
-@AllArgsConstructor
 public class Jobs {
 
     @Id
@@ -86,4 +84,5 @@ public class Jobs {
     public void setActive(Boolean active) {
         isActive = active;
     }
+
 }

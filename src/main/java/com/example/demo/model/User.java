@@ -1,4 +1,4 @@
-package com.example.demo.model.user;
+package com.example.demo.model;
 
 
 import jakarta.persistence.*;
@@ -20,7 +20,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String username;

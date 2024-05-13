@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(value = "job")
 public class JobController {
@@ -19,6 +21,18 @@ public class JobController {
     public ResponseEntity<?> getAllJobs (){
         try{
             return ResponseEntity.ok(jobService.getAllJobs());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Request failed: " + e.getMessage());
+        }
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getJob (@PathVariable Long id){
+        try{
+            Optional<Jobs> job = jobService.getJob(id);
+            if (job.isEmpty()) return ResponseEntity.badRequest().body("Id not found");
+
+            return ResponseEntity.ok(job.get());
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Request failed: " + e.getMessage());
         }
