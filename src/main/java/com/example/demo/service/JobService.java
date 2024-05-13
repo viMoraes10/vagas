@@ -1,12 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.JobDTO;
-import com.example.demo.model.job.Job;
+import com.example.demo.model.Jobs;
 import com.example.demo.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobService {
@@ -14,22 +15,31 @@ public class JobService {
     @Autowired
     JobRepository jobRepository;
 
-    public List<Job> getAllJobs() {
+    public List<Jobs> getAllJobs() {
         return jobRepository.findAll();
     }
 
 
-    public Job created(JobDTO jobDTO) {
-        Job job = new Job(jobDTO.title(), jobDTO.description(), jobDTO.requirements(), true);
+    public Jobs created(JobDTO jobDTO) {
+        Jobs job = new Jobs(jobDTO.title(), jobDTO.description(), jobDTO.requirements(), true);
         jobRepository.save(job);
         return job;
     }
 
-    public Job update(JobDTO jobDTO) {
-        Job jobOld = jobRepository.findById(jobDTO.id()).get();
-        Job jobNew = new Job(jobDTO.id(), jobDTO.title(), jobDTO.description(), jobDTO.requirements(), true);
-//        jobRepository.save(job);
-        return jobNew;
+    public Jobs update(Long id, JobDTO jobDTO) {
+        Optional<Jobs> jobs = jobRepository.findById(id);
+
+         if (jobs.isEmpty())
+             return null;
+
+        Jobs jobOld = jobs.get();
+        jobOld.setDescription(jobDTO.description());
+        jobOld.setRequirements(jobDTO.requirements());
+        jobOld.setTitle(jobDTO.title());
+        jobOld.setActive(jobDTO.isActive());
+        jobRepository.saveAndFlush(jobOld);
+
+        return jobOld;
     }
 
 }
