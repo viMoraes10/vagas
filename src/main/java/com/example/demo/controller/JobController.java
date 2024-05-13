@@ -30,11 +30,7 @@ public class JobController {
     @PostMapping(value = "/add")
     public ResponseEntity postJob(@RequestBody @Valid JobDTO JobDTO){
         try{
-
-
-
-
-            return ResponseEntity.ok(jobService.getAllJobs());
+            return ResponseEntity.ok(jobService.created(JobDTO));
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Request failed: " + e.getMessage());
         }

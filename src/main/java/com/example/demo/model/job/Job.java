@@ -28,4 +28,17 @@ public class Job {
     @Column(nullable = false)
     private Boolean isActive;
 
+    public Job(String title, String description, String requirements, Boolean isActive) {
+        this.title = title;
+        this.description = description;
+        this.requirements = requirements;
+        this.isActive = isActive;
+    }
+
+    public Job(Long id, String title, String description, String requirements, Boolean isActive) {
+        this.title = title;
+        this.description = description;
+        this.requirements = requirements;
+        this.isActive = isActive;
+    }
 }
