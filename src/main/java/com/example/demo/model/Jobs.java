@@ -38,13 +38,6 @@ public class Jobs {
         this.isActive = isActive;
     }
 
-//    public Jobs(Long id, String title, String description, String requirements, Boolean isActive) {
-//        this.title = title;
-//        this.description = description;
-//        this.requirements = requirements;
-//        this.isActive = isActive;
-//    }
-
     public Long getId() {
         return id;
     }
