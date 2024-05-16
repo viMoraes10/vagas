@@ -14,6 +14,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for handling authentication related requests.
+ */
 @RestController
 @RequestMapping(value ="auth")
 public class AuthenticationController {
@@ -27,6 +30,12 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
+    /**
+     * Endpoint for user login.
+     *
+     * @param data The authentication data transfer object containing the user's email and password.
+     * @return A ResponseEntity containing the login response with the JWT token or an error message.
+     */
     @PostMapping("/login")
     public ResponseEntity login (@RequestBody @Valid AuthenticationDTO data ){
         try {
@@ -41,6 +50,12 @@ public class AuthenticationController {
         }
     }
 
+    /**
+     * Endpoint for user registration.
+     *
+     * @param registerDTO The registration data transfer object containing the user's details.
+     * @return A ResponseEntity indicating the success or failure of the registration.
+     */
     @PostMapping("/register")
     public ResponseEntity register (@RequestBody @Valid RegisterDTO registerDTO ){
         try {

@@ -9,14 +9,25 @@ import org.springframework.stereotype.Service;
 
 import java.time.*;
 
+/**
+ * Service class for handling token related operations.
+ */
 @Service
 public class TokenService {
 
+    /**
+     * Secret key for token generation and validation.
+     */
     @Value("${api.security.toker.secret}")
     private String secret;
 
-
-
+    /**
+     * Generates a JWT token for a given user.
+     *
+     * @param user The user for whom the token is to be generated.
+     * @return The generated JWT token.
+     * @throws RuntimeException if there is an error while generating the token.
+     */
     public String generateToken(User user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -31,6 +42,13 @@ public class TokenService {
         }
     }
 
+    /**
+     * Validates a given JWT token.
+     *
+     * @param token The JWT token to be validated.
+     * @return The subject of the validated token.
+     * @throws RuntimeException if there is an error while validating the token.
+     */
     public  String validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -45,10 +63,15 @@ public class TokenService {
         }
     }
 
+    /**
+     * Generates an expiration date for the JWT token.
+     *
+     * @return The generated expiration date.
+     */
     private Instant genExpirationDate(){
         LocalDateTime localDateTime = LocalDateTime.now().plusHours(2);
 
-        // Converte LocalDateTime para ZonedDateTime usando o fuso horário padrão do sistema
+        // Converts LocalDateTime to ZonedDateTime using the system's default timezone
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
         Instant instant = zonedDateTime.toInstant();
 
